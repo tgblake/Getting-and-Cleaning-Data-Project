@@ -19,3 +19,6 @@ There were 30 subjects, numbered 1-30, and six activities, labelled LAYING, SITT
 * colsMeanTF and colsStdTF are ORed and the resulting vector used to subset the columns, including the subject and activity colunns and the *mean()* and *std()* columns, for a total of 68 columns.
 * The subsetted data frame is grouped by subject-activity combination to produce 6 x 30 = 180 rows, and summarise_each is used to apply mean() in each column to the 66 measurements for each combination.  
 * This final 180 x 68 data frame is written to a file phonemotionTidy.txt containing the reduced, tidied data frame.
+* The final dataframe can be read into R by:
+      meansBySubjActRead <- read.table("phonemotionTidy.txt", header=TRUE)
+* Note that when the data frame is read in, "(", ")", and "_" are replaced by ".".
