@@ -55,7 +55,7 @@ acceleration.
 * 'test/subject_test.txt': vector of subjects' numbers corresponding to each test.
 
 
-The OUTPUT dataset is phonemotionTidy.txt.
+## The OUTPUT dataset is phonemotionTidy.txt.
 
 The processing by run_analysis.R is described in README.md.
 
