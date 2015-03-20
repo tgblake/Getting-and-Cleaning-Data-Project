@@ -1,0 +1,8 @@
+# How to update a github repo from an edited local repo:
+
+git init  # Prior to first deposit of local files.
+git remote add origin https://github.com/tgblake/Getting-and-Cleaning-Data-Project.git
+git pull "https://github.com/tgblake/Getting-and-Cleaning-Data-Project.git" master
+git add .
+git commit -m "Added comments to run_analysis.R."
+git push --set-upstream origin master

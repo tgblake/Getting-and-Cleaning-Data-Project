@@ -10,6 +10,7 @@ of raw data, which weren't used.  This data was downloaded from
 * phonemotionTidy.txt: data reduced and tidied by run_analysis.R, operatting on UCI HAR 
 Dataset data.
 * CODEBOOK.txt: description of phonemotionTidy.txt.
+* update_github_repo.txt: git commands to update github repo after editing local files.
 
 There were 30 subjects, numbered 1-30, and six activities, labelled LAYING, SITTING, 
 STANDING, WALKING, WALKING_DOWNSTAIRS and WALKING_UPSTAIRS.  There were a total of 10299 
