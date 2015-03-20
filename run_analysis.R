@@ -1,104 +1,70 @@
 run_analysis <- function() {
-      library(reshape2)
-      library(dplyr)
-      activities <- read.table("UCI HAR Dataset/activity_labels.txt")
-      features   <- read.table("UCI HAR Dataset/features.txt")
-      #cat("nrow(activities) = ", nrow(activities), "\n")
-      #cat("nrow(features) = ",   nrow(features), "\n")
-      #cat("ncol(activities) = ", ncol(activities), "\n")
-      #cat("ncol(features) = ",   ncol(features), "\n")
-      #print("head(features,10):")
-      #print(head(features, 10))
-      
-      subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
-      X_train       <- read.table("UCI HAR Dataset/train/X_train.txt")
-      y_train       <- read.table("UCI HAR Dataset/train/y_train.txt")
-      subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
-      X_test       <- read.table("UCI HAR Dataset/test/X_test.txt")
-      y_test       <- read.table("UCI HAR Dataset/test/y_test.txt")
-      
-      #cat("nrow(subject_train) = ", nrow(subject_train), "\n")
-      cat("nrow(X_train) = ", nrow(X_train), "\n")
-      #cat("nrow(y_train) = ", nrow(y_train), "\n")
-      #cat("nrow(subject_test) = ", nrow(subject_test), "\n")
-      cat("nrow(X_test) = ", nrow(X_test), "\n")
-      #cat("nrow(y_test) = ", nrow(y_test), "\n")
-      
-      #cat("ncol(subject_train) = ", ncol(subject_train), "\n")
-      cat("ncol(X_train) = ", ncol(X_train), "\n")
-      #cat("ncol(y_train) = ", ncol(y_train), "\n")
-      #cat("ncol(subject_test) = ", ncol(subject_test), "\n")
-      cat("ncol(X_test) = ", ncol(X_test), "\n")
-      #cat("ncol(y_test) = ", ncol(y_test), "\n")
-      
-      train <- cbind(subject_train, y_train, X_train)
-      test  <- cbind(subject_test,  y_test,  X_test)
-      cat("ncol(train) = ", ncol(train), "\n")
-      cat("ncol(test) = ", ncol(test), "\n")
-      names(train) <- c("subject", "activity", as.character(features[, 2]))
-      names(test)  <- c("subject", "activity", as.character(features[, 2]))
-      #print("as.character(activities[train[1, Activity], 2]):")
-      #print(as.character(activities[train[1, "Activity"], 2]))
-      
-      #print("head(train[1:4]):")
-      #print(head(train[1:4]))
-      #print("tail(test[1:4]):")
-      #print(tail(test[1:4]))
-      #print("tail(train[1:4]):")
-      #print(tail(train[1:4]))
-      #print("tail(test[1:4]):")
-      #print(tail(test[1:4]))
-      
-      #traintest <- merge(train, test)  #, by.x="subject", by.y="subject")
-      traintest <- rbind(train, test)
-      
-      for (i in 1:nrow(traintest)) {
-            traintest[i, "activity"]  <- as.character(activities[traintest[i, "activity"], 2])
-      }
-      #print("head(traintest[1:4], 10):")
-      #print(head(traintest[1:4], 10))
-      #print("tail(traintest[1:4], 10):")
-      #print(tail(traintest[1:4], 10))
-      
-      colsMeanTF <- grepl("mean\\(\\)", names(traintest))
-      colsStdTF <- grepl("std\\(\\)", names(traintest))
-      colsTF <- colsMeanTF | colsStdTF
-      colsTF <- c(TRUE, TRUE, colsTF[3:length(colsTF)])
-      #print("head(colsMeanTF):")
-      #print(head(colsMeanTF))
-      #print("tail(colsMeanTF):")
-      #print(tail(colsMeanTF))
-      
-      meanStd <- traintest[,colsTF]
-      cat("dim(meanStd) = ", dim(meanStd), "\n")
-      #cat("nrow(meanStd) = ", nrow(meanStd), "\n")
-      #print("names(meanStd):")
-      #print(names(meanStd))
-      print("tail(meanStd[,1:4]):")
-      print(tail(meanStd[,1:4]))
-      ncolMeanStd <- ncol(meanStd)
-      #print("tail(meanStd[,(ncolMeanStd-2):ncolMeanStd]):")
-      #print(tail(meanStd[,(ncolMeanStd-2):ncolMeanStd]))
-      
-      bySubjAct <- group_by(meanStd, subject, activity)
-      meansBySubjAct <- bySubjAct %>% summarise_each(funs(mean))
-      print("dim(meansBySubjAct):")
-      print(dim(meansBySubjAct))
-      #print("head(meansBySubjAct[1:4], 15):")
-      #print(head(meansBySubjAct[1:4], 15))
-      print("tail(meansBySubjAct[1:4], 15):")
-      print(tail(meansBySubjAct[1:4], 15))
-      
-      #meanStdMelt <- melt(meanStd, id=c("subject", "activity"), measure.vars=names(meanStd)[3:ncolMeanStd])
-      #cat("dim(meanStdMelt): ", dim(meanStdMelt), "\n")
-      #print(names(meanStdMelt))
-      #print("head(meanStdMelt, 10):")
-      #print(head(meanStdMelt, 10))
-      
-      #meanStdDcast <- dcast(meanStdMelt, subject ~ activity, mean)
-      #cat("dim(meanStdDcast): ", dim(meanStdDcast), "\n")
-      #print(names(meanStdDcast))
-      #print("tail(meanStdDcast[1:5], 10):")
-      #print(tail(meanStdDcast[1:5], 10))
-      
+    library(reshape2)
+    library(dplyr)
+    
+    # Read previously downloaded dataset:
+    activities <- read.table("UCI HAR Dataset/activity_labels.txt")
+    features   <- read.table("UCI HAR Dataset/features.txt")
+    subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
+    X_train       <- read.table("UCI HAR Dataset/train/X_train.txt")
+    y_train       <- read.table("UCI HAR Dataset/train/y_train.txt")
+    subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
+    X_test       <- read.table("UCI HAR Dataset/test/X_test.txt")
+    y_test       <- read.table("UCI HAR Dataset/test/y_test.txt")
+    
+    # Insert subject and activity identifiers into training and testing dataframes:
+    train <- cbind(subject_train, y_train, X_train)
+    test  <- cbind(subject_test,  y_test,  X_test)
+    cat("dim(train) = ", dim(train), "\n")
+    cat("dim(test) = ", dim(test), "\n")
+    
+    # Put names of features (motion quantities) on columns of dataframes:
+    names(train) <- c("subject", "activity", as.character(features[, 2]))
+    names(test)  <- c("subject", "activity", as.character(features[, 2]))
+    
+    #print("as.character(activities[train[1, Activity], 2]):")
+    #print(as.character(activities[train[1, "Activity"], 2]))
+    
+    # Merge training and testing data frames:
+    traintest <- rbind(train, test)
+    
+    # Change number identifiers of activities to given labels:
+    for (i in 1:nrow(traintest)) {
+        traintest[i, "activity"]  <- as.character(activities[traintest[i, "activity"], 2])
+    }
+    
+    # Create vectors to identify column names with "mean()" or "std()":
+    colsMeanTF <- grepl("mean\\(\\)", names(traintest))
+    colsStdTF <- grepl("std\\(\\)", names(traintest))
+    # OR the two vectors:
+    colsTF <- colsMeanTF | colsStdTF
+    # Make the column-selecting vector include "subject" and "activity":
+    colsTF <- c(TRUE, TRUE, colsTF[3:length(colsTF)])
+    
+    # Create data frame with only the required feature columns:
+    meanStd <- traintest[,colsTF]
+    
+    cat("dim(meanStd) = ", dim(meanStd), "\n")
+    
+    # Assign rows to 180 groups of combinations of subject and activity:
+    bySubjAct <- group_by(meanStd, subject, activity)
+    
+    # Apply mean() to each group in each column:
+    meansBySubjAct <- bySubjAct %>% summarise_each(funs(mean))
+    
+    cat("dim(meansBySubjAct): ", dim(meansBySubjAct), "\n")
+    #print("tail(meansBySubjAct[1:4], 15):")
+    #print(tail(meansBySubjAct[1:4], 15))
+    
+    # Output frame of means, with rows = groups of (subject, activity)
+    # and columns = measurements:
+    write.table(meansBySubjAct, file="phonemotionTidy.txt", row.names=FALSE)
+    
+    # Illustrate how to read tidy dta set back in:
+    meansBySubjActRead <- read.table("phonemotionTidy.txt", header=TRUE)
+    
+    cat("dim(meansBySubjActRead):", dim(meansBySubjActRead), "\n")
+    print(names(meansBySubjActRead))
+    print("tail(meansBySubjActRead[1:4], 15):")
+    print(tail(meansBySubjActRead[1:4], 15))
 }
