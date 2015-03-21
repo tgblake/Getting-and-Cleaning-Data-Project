@@ -1,8 +1,3 @@
-Because it is always important to know how the raw data was measured, this file describes 
-the dataset that was INPUT to the run_analysis.R script as well as the OUTPUT of that 
-script, the file phonemotionTidy.txt.  OUTPUT file first:
-
-
 ## The OUTPUT dataset is phonemotionTidy.txt.
 
 The processing by run_analysis.R is described in README.md.
@@ -10,8 +5,14 @@ The processing by run_analysis.R is described in README.md.
 The output data phonemotionTidy.txt can be read back into a dataframe in R by:
 meansBySubjAct <- read.table("phonemotionTidy.txt", header=TRUE)
 
-* The 180 rows are enumerated by 30 subject numbers and six activity labels.
-* The 81 columns are "subject", "activity" and 66 feature variables selected from the
+* The 180 rows are enumerated by 30 subject numbers and six activity labels, 
+            LAYING
+           SITTING
+          STANDING
+           WALKING
+WALKING_DOWNSTAIRS
+  WALKING_UPSTAIRS
+* The 81 columns are "subject", "activity" and 79 feature variables selected from the
 input dataset by selecting names containing "mean" or "std".
 * each value in the 79 feature columns is the mean of that column's values occurring in
 INPUT-dataframe rows with the row's combination of subject and activity.
