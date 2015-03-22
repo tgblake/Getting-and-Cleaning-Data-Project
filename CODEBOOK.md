@@ -60,13 +60,15 @@ INPUT-dataframe rows with the row's combination of subject and activity.
 [81] "fBodyBodyGyroJerkMag.meanFreq.."
 * For details of the variaable names, see features_info.txt in the input data set.
 * t referes to a time-domain variable, f refers to a frequency-domain varible, 
-* Acc refers to measurements from the phone's accelerometer and Gyro to measurements from
-the phone's gyroscope.
+* Acc refers to measurements from the phone's accelerometer, in units of 'g', the 
+acceleration due to gravity.
+* Gyro refers to measurements from the phone's gyroscope, in radians/sec.
+* meanFreq denotes a mean frequency measurement in Hz.
+* "mean..", ie. mean(), refers to a measurement averaged over a time or frequency window 
+in the sensor's data, and "std..", ie. std(), is the standard deviation of such a set of 
+measurements.  
 * Note that in these feature names, from the data set as read back in by 
      meansBySubjActRead <- read.table("phonemotionTidy.txt", header=TRUE)
   the characters "()", and "_" have been replaced by ".." and "." respectively.
-* "mean..", ie. mean(), refers to a measurement averaged over a time or frequency window 
-in the sensor's data, and "std..", ie. std(), is the standard deviation of such a set of 
-measurements.  "meanFreq.." denotes a mean frequency measurement (in the frequency domain;
-see features_info.txt in the input data set).
+
 
