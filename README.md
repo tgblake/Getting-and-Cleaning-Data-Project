@@ -31,8 +31,9 @@ in the training and testing data frames.
 * The training and testing data frames are combined by rbind.
 * In the "activity" column, the numbers are replaced by the aforementioned six labels.
 * The column names containing "mean" or "std" (as well as subject or activity) are 
-identified by grepl and put into vector colsTF.
-* The colsTF  vector is used to subset the columns, resulting in a data frame of 81 columns.
+identified by grepl and put into vector colsTF.  The column names include mean(), std() 
+and meanFreq, for a total, with "subject" and "activity", of 81 columns.
+* The colsTF  vector is used to subset the columns.
 * The subsetted data frame is grouped by subject-activity combination to produce 6 x 30 = 
 180 rows, and summarise_each is used to apply mean() in each column to the 66 measurements
 for each combination.  

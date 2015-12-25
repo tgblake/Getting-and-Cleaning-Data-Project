@@ -59,7 +59,7 @@ INPUT-dataframe rows with the row's combination of subject and activity.
 [79] "fBodyBodyGyroJerkMag.mean.."     "fBodyBodyGyroJerkMag.std.."     
 [81] "fBodyBodyGyroJerkMag.meanFreq.."
 * For details of the variaable names, see features_info.txt in the input data set.
-* t referes to a time-domain variable, f refers to a frequency-domain varible, 
+* t refers to a time-domain variable, f refers to a frequency-domain varible, 
 * Acc refers to measurements from the phone's accelerometer, in units of 'g', the 
 acceleration due to gravity.
 * Gyro refers to measurements from the phone's gyroscope, in radians/sec.
