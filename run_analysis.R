@@ -39,6 +39,14 @@ run_analysis <- function() {
       # Create data frame with only the required feature columns:
       meanStd <- traintest[,colsTF]
       
+      # Clean up variable names; make more descriptive:
+      names(meanStd) <- gsub("^t", "time", names(meanStd))
+      names(meanStd) <- gsub("^f", "freq", names(meanStd))
+      names(meanStd) <- gsub("std", "Std",names(meanStd))
+      names(meanStd) <- gsub("mean", "Mean",names(meanStd))
+      names(meanStd) <- gsub("-", "",names(meanStd))
+      names(meanStd) <- gsub("\\(\\)", "", names(meanStd))
+      
       cat("dim(meanStd) = ", dim(meanStd), "\n")
       print("names(meanStd):")
       print(names(meanStd))
