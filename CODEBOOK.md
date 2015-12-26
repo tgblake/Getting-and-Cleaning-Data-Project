@@ -17,58 +17,56 @@ input dataset by selecting names containing "mean" or "std".
 * each value in the 79 feature columns is the mean of that column's values occurring in
 INPUT-dataframe rows with the row's combination of subject and activity.
 * The feature names are (as read back in by read.table()):
- [1] "subject"                         "activity"                       
- [3] "tBodyAcc.mean...X"               "tBodyAcc.mean...Y"              
- [5] "tBodyAcc.mean...Z"               "tBodyAcc.std...X"               
- [7] "tBodyAcc.std...Y"                "tBodyAcc.std...Z"               
- [9] "tGravityAcc.mean...X"            "tGravityAcc.mean...Y"           
-[11] "tGravityAcc.mean...Z"            "tGravityAcc.std...X"            
-[13] "tGravityAcc.std...Y"             "tGravityAcc.std...Z"            
-[15] "tBodyAccJerk.mean...X"           "tBodyAccJerk.mean...Y"          
-[17] "tBodyAccJerk.mean...Z"           "tBodyAccJerk.std...X"           
-[19] "tBodyAccJerk.std...Y"            "tBodyAccJerk.std...Z"           
-[21] "tBodyGyro.mean...X"              "tBodyGyro.mean...Y"             
-[23] "tBodyGyro.mean...Z"              "tBodyGyro.std...X"              
-[25] "tBodyGyro.std...Y"               "tBodyGyro.std...Z"              
-[27] "tBodyGyroJerk.mean...X"          "tBodyGyroJerk.mean...Y"         
-[29] "tBodyGyroJerk.mean...Z"          "tBodyGyroJerk.std...X"          
-[31] "tBodyGyroJerk.std...Y"           "tBodyGyroJerk.std...Z"          
-[33] "tBodyAccMag.mean.."              "tBodyAccMag.std.."              
-[35] "tGravityAccMag.mean.."           "tGravityAccMag.std.."           
-[37] "tBodyAccJerkMag.mean.."          "tBodyAccJerkMag.std.."          
-[39] "tBodyGyroMag.mean.."             "tBodyGyroMag.std.."             
-[41] "tBodyGyroJerkMag.mean.."         "tBodyGyroJerkMag.std.."         
-[43] "fBodyAcc.mean...X"               "fBodyAcc.mean...Y"              
-[45] "fBodyAcc.mean...Z"               "fBodyAcc.std...X"               
-[47] "fBodyAcc.std...Y"                "fBodyAcc.std...Z"               
-[49] "fBodyAcc.meanFreq...X"           "fBodyAcc.meanFreq...Y"          
-[51] "fBodyAcc.meanFreq...Z"           "fBodyAccJerk.mean...X"          
-[53] "fBodyAccJerk.mean...Y"           "fBodyAccJerk.mean...Z"          
-[55] "fBodyAccJerk.std...X"            "fBodyAccJerk.std...Y"           
-[57] "fBodyAccJerk.std...Z"            "fBodyAccJerk.meanFreq...X"      
-[59] "fBodyAccJerk.meanFreq...Y"       "fBodyAccJerk.meanFreq...Z"      
-[61] "fBodyGyro.mean...X"              "fBodyGyro.mean...Y"             
-[63] "fBodyGyro.mean...Z"              "fBodyGyro.std...X"              
-[65] "fBodyGyro.std...Y"               "fBodyGyro.std...Z"              
-[67] "fBodyGyro.meanFreq...X"          "fBodyGyro.meanFreq...Y"         
-[69] "fBodyGyro.meanFreq...Z"          "fBodyAccMag.mean.."             
-[71] "fBodyAccMag.std.."               "fBodyAccMag.meanFreq.."         
-[73] "fBodyBodyAccJerkMag.mean.."      "fBodyBodyAccJerkMag.std.."      
-[75] "fBodyBodyAccJerkMag.meanFreq.."  "fBodyBodyGyroMag.mean.."        
-[77] "fBodyBodyGyroMag.std.."          "fBodyBodyGyroMag.meanFreq.."    
-[79] "fBodyBodyGyroJerkMag.mean.."     "fBodyBodyGyroJerkMag.std.."     
-[81] "fBodyBodyGyroJerkMag.meanFreq.."
+[1] "subject"                         "activity"                       
+[3] "timeBodyAccMeanX"                "timeBodyAccMeanY"               
+[5] "timeBodyAccMeanZ"                "timeBodyAccStdX"                
+[7] "timeBodyAccStdY"                 "timeBodyAccStdZ"                
+[9] "timeGravityAccMeanX"             "timeGravityAccMeanY"            
+[11] "timeGravityAccMeanZ"             "timeGravityAccStdX"             
+[13] "timeGravityAccStdY"              "timeGravityAccStdZ"             
+[15] "timeBodyAccJerkMeanX"            "timeBodyAccJerkMeanY"           
+[17] "timeBodyAccJerkMeanZ"            "timeBodyAccJerkStdX"            
+[19] "timeBodyAccJerkStdY"             "timeBodyAccJerkStdZ"            
+[21] "timeBodyGyroMeanX"               "timeBodyGyroMeanY"              
+[23] "timeBodyGyroMeanZ"               "timeBodyGyroStdX"               
+[25] "timeBodyGyroStdY"                "timeBodyGyroStdZ"               
+[27] "timeBodyGyroJerkMeanX"           "timeBodyGyroJerkMeanY"          
+[29] "timeBodyGyroJerkMeanZ"           "timeBodyGyroJerkStdX"           
+[31] "timeBodyGyroJerkStdY"            "timeBodyGyroJerkStdZ"           
+[33] "timeBodyAccMagMean"              "timeBodyAccMagStd"              
+[35] "timeGravityAccMagMean"           "timeGravityAccMagStd"           
+[37] "timeBodyAccJerkMagMean"          "timeBodyAccJerkMagStd"          
+[39] "timeBodyGyroMagMean"             "timeBodyGyroMagStd"             
+[41] "timeBodyGyroJerkMagMean"         "timeBodyGyroJerkMagStd"         
+[43] "freqBodyAccMeanX"                "freqBodyAccMeanY"               
+[45] "freqBodyAccMeanZ"                "freqBodyAccStdX"                
+[47] "freqBodyAccStdY"                 "freqBodyAccStdZ"                
+[49] "freqBodyAccMeanFreqX"            "freqBodyAccMeanFreqY"           
+[51] "freqBodyAccMeanFreqZ"            "freqBodyAccJerkMeanX"           
+[53] "freqBodyAccJerkMeanY"            "freqBodyAccJerkMeanZ"           
+[55] "freqBodyAccJerkStdX"             "freqBodyAccJerkStdY"            
+[57] "freqBodyAccJerkStdZ"             "freqBodyAccJerkMeanFreqX"       
+[59] "freqBodyAccJerkMeanFreqY"        "freqBodyAccJerkMeanFreqZ"       
+[61] "freqBodyGyroMeanX"               "freqBodyGyroMeanY"              
+[63] "freqBodyGyroMeanZ"               "freqBodyGyroStdX"               
+[65] "freqBodyGyroStdY"                "freqBodyGyroStdZ"               
+[67] "freqBodyGyroMeanFreqX"           "freqBodyGyroMeanFreqY"          
+[69] "freqBodyGyroMeanFreqZ"           "freqBodyAccMagMean"             
+[71] "freqBodyAccMagStd"               "freqBodyAccMagMeanFreq"         
+[73] "freqBodyBodyAccJerkMagMean"      "freqBodyBodyAccJerkMagStd"      
+[75] "freqBodyBodyAccJerkMagMeanFreq"  "freqBodyBodyGyroMagMean"        
+[77] "freqBodyBodyGyroMagStd"          "freqBodyBodyGyroMagMeanFreq"    
+[79] "freqBodyBodyGyroJerkMagMean"     "freqBodyBodyGyroJerkMagStd"     
+[81] "freqBodyBodyGyroJerkMagMeanFreq"
 * For details of the variaable names, see features_info.txt in the input data set.
-* t refers to a time-domain variable, f refers to a frequency-domain varible, 
+* time refers to a time-domain variable, freq refers to a frequency-domain varible, 
 * Acc refers to measurements from the phone's accelerometer, in units of 'g', the 
 acceleration due to gravity.
 * Gyro refers to measurements from the phone's gyroscope, in radians/sec.
-* meanFreq denotes a mean frequency measurement in Hz.
-* "mean..", ie. mean(), refers to a measurement averaged over a time or frequency window 
+* MeanFreq denotes a mean frequency measurement in Hz.
+* "Mean", ie. mean(), refers to a measurement averaged over a time or frequency window 
 in the sensor's data, and "std..", ie. std(), is the standard deviation of such a set of 
 measurements.  
-* Note that in these feature names, from the data set as read back in by 
-     meansBySubjActRead <- read.table("phonemotionTidy.txt", header=TRUE)
-  the characters "()", and "_" have been replaced by ".." and "." respectively.
+
 
 
